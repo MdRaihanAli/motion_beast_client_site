@@ -1,0 +1,21 @@
+.slider_bg1{
+  background-image: url(../src/assets/carocel/carocel2.jpg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+}
+.slider_bg2{
+  background-image: url(../src/assets/carocel/carocel3.jpg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+}
+
+
+.navbar-nav .nav-link.active{
+  background-color: rgb(113, 120, 126);
+  border-radius: 5px;
+  padding: 5px;
+}
