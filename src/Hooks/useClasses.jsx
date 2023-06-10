@@ -5,7 +5,7 @@ const useClasses = () => {
     const { data: classes = [], refetch } = useQuery({
         queryKey: ['classes'],
         queryFn: async () => {
-            const response = await fetch(`classes.json`)
+            const response = await fetch(`${import.meta.env.VITE_link}/classes`)
             return response.json()
         },
     })

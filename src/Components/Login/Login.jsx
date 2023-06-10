@@ -19,6 +19,14 @@ function Login() {
     const handelGoogleLogin = () => {
         signInWithGoogle()
             .then(res => {
+                // console.log(res);
+                fetch(`${import.meta.env.VITE_link}/user`,{
+                        method: 'POST',
+                        headers: { 'content-type': 'application/json' },
+                        body: JSON.stringify({ name: res.user.displayName, email: res.user.email, image: res.user.photoURL, role: "student" })
+                      })
+                      .then(result=>result.json())
+                      .then(data=>console.log(data))
                 navigate('/')
 
             })

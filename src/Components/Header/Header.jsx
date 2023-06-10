@@ -32,13 +32,14 @@ function Header() {
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="mx-auto nav_bg">
                         <NavLink className='nav-link ' to='/'>Home</NavLink>
-                        <NavLink className='nav-link' to='/class'>Class</NavLink>
+                        <NavLink className='nav-link' to='/classes'>Classes</NavLink>
                         <Nav.Link href="#pricing">Pricing</Nav.Link>
 
                     </Nav>
                     <Nav>
                         {
-                            user ? <span>
+                            user ? <span className='d-flex'>
+                                <NavLink className='nav-link' to='/dashboard'>Dashboard</NavLink>
                                 <img title={user?.displayName} width='40' className='rounded-circle' height='40' src={user?.photoURL} alt="" />
                                 <button onClick={handelSignOut} className='btn btn-success ms-2'>Sign Out</button>
                             </span> : <NavLink className='ms-2' to='/login'> <button className='btn btn-success'>Login</button></NavLink>

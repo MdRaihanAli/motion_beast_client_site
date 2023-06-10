@@ -36,9 +36,19 @@ function SignUp() {
             .then(res => {
                 updateUserProfile(data.name, data.photo)
                     .then((result) => {
+
+                        fetch(`${import.meta.env.VITE_link}/user`,{
+                            method: 'POST',
+                            headers: { 'content-type': 'application/json' },
+                            body: JSON.stringify({name:data.name, email: data.email, image: data.photo, role: "student" })
+                          })
+                          .then(result=>result.json())
+                          .then(data=>console.log(data))
+
                         navigate('/')
                         console.log(result);
                     })
+                    
                     .catch(err => {
                         console.log(err.message)
                     })

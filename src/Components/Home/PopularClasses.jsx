@@ -12,25 +12,23 @@ function PopularClasses() {
             <div className='container'>
                 <h2 className='text-center fw-bold'> <span className="text-success">Popular</span> Classes</h2>
                 <div className='border-bottom w-25 mx-auto'></div>
-                <div className="row mt-1
-                
-                g-lg-5 g-md-3 g-2">
+                <div className="row mt-1 g-lg-5 g-md-3 g-2">
                     {
-                        classd.map(clas => <div className='col-md-6  col-lg-4'>
-                             <Card style={{border:'none card_style'}} className='bg-light text-center'>
-                            <Card.Img variant="top" src={clas.image} />
+                        classd.slice(0,6).map(clas => <div className='col-md-6  col-lg-4 mb-3'>
+                             <div style={{border:'none card_style'}} className='bg-light card skl text-center'>
+                            <Card.Img variant="top" className='w-sm-100' style={{maxWidth:"338px", maxHeight:"190px"}} src={clas.image} />
                             <Card.Body>
                                 <Card.Title>{clas.title}</Card.Title>
                                 <div className='d-flex justify-content-between '>
-                                <h6 className='shadow-sm p-2 text-success'>Enrolled {clas.enarolled}</h6>
-                                <h6 className='shadow-sm p-2 text-success'>Available seats {clas.range - clas.enarolled}</h6>
+                                <h6 className='shadow-sm p-2 text-success'>Enrolled: {clas.enarolled}</h6>
+                                <h6 className='shadow-sm p-2 text-success'>Available seats: {clas.range - clas.enarolled}</h6>
                                 </div>
                                 <Card.Text>
                                   {clas.detail}
                                 </Card.Text>
-                                <Button variant="success shadow">Go somewhere</Button>
+                                <Button variant="success shadow">Enroll Now</Button>
                             </Card.Body>
-                        </Card>
+                        </div>
                         </div>
                          )
                     }
