@@ -1,10 +1,30 @@
 import React from 'react'
-import './AllClass.css'
 import useClasses from '../../Hooks/useClasses'
 import Table from 'react-bootstrap/Table';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function AllClass() {
-    const [allClasses] = useClasses()
+    const [allClasses, refetch] = useClasses()
+    console.log(allClasses);
+
+    const handelAprove=(id)=>{
+        fetch(`${import.meta.env.VITE_link}/class/${id}`,{
+            method:'PATCH',
+            headers: {'content-type':'application/json'},
+            body: JSON.stringify({role: "approve"})
+        })
+        .then(res=>res.json())
+        .then(data=>{
+            console.log(data);
+            toast("Wow so easy!")
+            refetch()
+        })
+    }
+
+
+
+
   return (
     <div className='container'>
             <h1 className='fw-bold my-4 text-center'>All  <span className="text-success">Class</span> </h1>
@@ -33,15 +53,14 @@ function AllClass() {
                             </td>
                             <td>{clas.range}</td>
                             <td>{clas.price}</td>
-                            <td>{clas.stutus}</td>
+                            <td>{clas.role}</td>
                             <td> 
-                                <button className='btn btn-success btn-sm w-100'>Approve</button>
+                                <button disabled={clas.role == 'approve'} onClick={()=>handelAprove(clas._id)} className='btn btn-success btn-sm w-100'>Approve</button>
                                 <button className='btn btn-danger btn-sm  w-100 my-2'>Deny </button>
                                 <button className='btn btn-secondary btn-sm  w-100'>feedback</button>
                                 </td>
                         </tr>)
                     }
-
 
                 </tbody>
             </Table>
