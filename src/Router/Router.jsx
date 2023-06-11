@@ -7,6 +7,8 @@ import Classes from "../Components/Classes/Classes.jsx";
 import Dashboard from "../Pages/Dashboard/Dashboard.jsx";
 import AllClass from "../Components/AllClass/AllClass.jsx";
 import ManageUser from "../Components/ManageUser/ManageUser.jsx";
+import Addclass from "../Components/AddClass/Addclass.jsx";
+import MyClass from "../Components/MyClass/MyClass.jsx";
 
 
 const router = createBrowserRouter([
@@ -45,6 +47,14 @@ const router = createBrowserRouter([
             {
                 path:'manageUsers',
                 element: <ManageUser></ManageUser>
+            },
+            {
+                path: 'addClass',
+                element: <Addclass></Addclass>
+            },
+            {
+                path: 'myClass',
+                element: <MyClass></MyClass>
             }
         ]
     }

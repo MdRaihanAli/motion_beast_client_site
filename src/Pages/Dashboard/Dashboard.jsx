@@ -28,6 +28,7 @@ function Dashboard() {
                         <li><NavLink className='bg-transparent' to='manageUsers'> <FaUser />  Manage User</NavLink></li>
 
                         <li><NavLink className='bg-transparent' to='addClass'> <FaBook /> Add a Class </NavLink> </li>
+                        <li><NavLink className='bg-transparent' to='myClass'> <FaCalendarCheck />  My Class</NavLink></li>
 
                         <li><NavLink className='bg-transparent' to='/dasboard/reservation'> <FaUtensils /> Add Item</NavLink></li>
 
