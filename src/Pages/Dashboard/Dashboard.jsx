@@ -1,27 +1,35 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Link, NavLink, Outlet } from 'react-router-dom'
 import './Dashboard.css'
 import { FaBars, FaBook, FaCalendarAlt, FaCalendarCheck, FaHome, FaLeanpub, FaShoppingBag, FaShoppingCart, FaSms, FaUser, FaUtensils, FaWallet } from 'react-icons/fa';
 import logo from '../../assets/logo.png'
+import { AuthContext } from '../../provider/Provider';
 
 function Dashboard() {
+    const {user}= useContext(AuthContext)
     return (
         <div className='container'>
             <div className="row">
 
                 <div className="col-md-3 bg-success-subtle min-vh-100">
-                    <div className='position-fixed'>
-                        <div className='bg-light rounded align-items-center my-5 px-2 d-flex ali '>
+                    <div className='position-fixed navbarr'>
+                        <div className='bg-light rounded align-items-center mt-5 px-2 d-flex ali '>
                             <img width='80' height='80' className='h-100' src={logo} alt="" />
                             <h3 className='text-dark fw-bold'>3D Motion</h3>
                         </div>
+                        <div className=' rounded my-3 mb-4 text-center px-2 '>
+                        <img title={user?.displayName} width='60' className='rounded-circle' height='60' src={user?.photoURL} alt="" />
+                            <h5 className='text-dark fw-bold'>{user?.displayName}</h5>
+                        </div>
+
 
                         <li><NavLink className='bg-transparent' to='/'> <FaHome />Home</NavLink></li>
-                        <li><NavLink className='bg-transparent' to='/menu'> <FaBars />Manage Classes</NavLink></li>
+                        <li><NavLink className='bg-transparent df' to='allClass'> <FaBars /> Manage Classes</NavLink></li>
+                        <li><NavLink className='bg-transparent' to='manageUsers'> <FaUser />  Manage User</NavLink></li>
+
+                        <li><NavLink className='bg-transparent' to='addClass'> <FaBook /> Add a Class </NavLink> </li>
 
                         <li><NavLink className='bg-transparent' to='/dasboard/reservation'> <FaUtensils /> Add Item</NavLink></li>
-                        <li><NavLink className='bg-transparent' to='/dasboard/mycart'> <FaBook /> Manage Boking </NavLink> </li>
-                        <li><NavLink className='bg-transparent' to='/dasboard/allUser'> <FaUser /> All User</NavLink></li>
 
                         <li><NavLink className='bg-transparent' to='/dasboard/mycart'> <FaHome /> User Home</NavLink></li>
                         <li><NavLink className='bg-transparent' to='/dasboard/reservation'> <FaCalendarAlt /> Reservation</NavLink></li>

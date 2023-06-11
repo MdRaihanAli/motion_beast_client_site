@@ -6,6 +6,7 @@ import SignUp from "../Components/SignUp/SignUp.jsx";
 import Classes from "../Components/Classes/Classes.jsx";
 import Dashboard from "../Pages/Dashboard/Dashboard.jsx";
 import AllClass from "../Components/AllClass/AllClass.jsx";
+import ManageUser from "../Components/ManageUser/ManageUser.jsx";
 
 
 const router = createBrowserRouter([
@@ -38,8 +39,12 @@ const router = createBrowserRouter([
         element: <Dashboard></Dashboard>,
         children:[
             {
-                path:'',
+                path:'allClass',
                 element: <AllClass></AllClass>
+            },
+            {
+                path:'manageUsers',
+                element: <ManageUser></ManageUser>
             }
         ]
     }

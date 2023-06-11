@@ -40,12 +40,11 @@ function AllClass() {
     const feedback = useRef()
     const handelFidBack = () => {
         const textData = feedback.current.value
-        // console.log(defaultId, textData);
 
-        fetch(`${import.meta.env.VITE_link}/class/${defaultId}`, {
+        fetch(`${import.meta.env.VITE_link}/classfeedback/${defaultId}`, {
             method: 'PUT',
             headers: { 'content-type': 'application/json' },
-            body: JSON.stringify({role: "deny", feedback : textData })
+            body: JSON.stringify({ feedback: textData })
         })
             .then(res => res.json())
             .then(data => {
@@ -57,11 +56,11 @@ function AllClass() {
     }
 
 
-
     return (
+
         <div className='container'>
             <h1 className='fw-bold my-4 text-center'>Manage <span className="text-success">All  Class</span> </h1>
-            <Table striped bordered hover>
+            <Table striped hover>
                 <thead>
                     <tr>
                         <th scope="col">#</th>
@@ -78,7 +77,7 @@ function AllClass() {
                     {
                         allClasses.map((clas, index) => <tr key={index}>
                             <th >{index + 1}</th>
-                            <td> <img className='rounded' width='80' height='80' src={clas.image} alt="" /></td>
+                            <td> <img className='rounded w-100 h-100' src={clas.image} alt="" /></td>
                             <td>{clas.title}</td>
                             <td>
                                 <span>{clas.name}</span> <br />
@@ -88,9 +87,9 @@ function AllClass() {
                             <td>{clas.price}</td>
                             <td>{clas.role}</td>
                             <td>
-                                <button disabled={clas.role == 'approve'} onClick={() => handelAprove(clas._id, "approve")} className='btn btn-success btn-sm w-100'>Approve</button>
-                                <button disabled={clas.role == 'deny'} onClick={() => handelAprove(clas._id, "deny")} className='btn btn-danger btn-sm  w-100 my-2'>Deny </button>
-                                <button disabled={clas.role == 'approve' || clas.role == 'pending' } onClick={() => handleShow(clas._id)} className='btn btn-secondary btn-sm  w-100'>feedback</button>
+                                <button disabled={clas.role == 'approved' || clas.role == 'denied'} onClick={() => handelAprove(clas._id, "approved")} className='btn btn-success btn-sm w-100'>Approve</button>
+                                <button disabled={clas.role == 'denied' || clas.role == 'approved'} onClick={() => handelAprove(clas._id, "denied")} className='btn btn-danger btn-sm  w-100 my-2'>Deny </button>
+                                <button onClick={() => handleShow(clas._id)} className='btn btn-outline-secondary btn-sm  w-100'>feedback</button>
                             </td>
                         </tr>)
                     }
@@ -102,15 +101,13 @@ function AllClass() {
 
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
-                    <Modal.Title>Modal heading</Modal.Title>
+                    <Modal.Title>Your Feedback</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <input type="text" name='feedback' ref={feedback} />
+                    <textarea className='form-control' placeholder='Writer Your Feedback' type="text" name='feedback' ref={feedback} />
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="secondary" onClick={handleClose}>
-                        Close
-                    </Button>
+                    
                     <Button variant="success" onClick={handelFidBack}>
                         Save Feedback
                     </Button>
