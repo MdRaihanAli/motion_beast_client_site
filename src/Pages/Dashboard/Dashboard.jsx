@@ -29,11 +29,11 @@ function Dashboard() {
 
                         <li><NavLink className='bg-transparent' to='addClass'> <FaBook /> Add a Class </NavLink> </li>
                         <li><NavLink className='bg-transparent' to='myClass'> <FaCalendarCheck />  My Class</NavLink></li>
+                        <li><NavLink className='bg-transparent' to='mySelectedClass'> <FaCalendarAlt /> My Selected Classes</NavLink></li>
 
                         <li><NavLink className='bg-transparent' to='/dasboard/reservation'> <FaUtensils /> Add Item</NavLink></li>
 
                         <li><NavLink className='bg-transparent' to='/dasboard/mycart'> <FaHome /> User Home</NavLink></li>
-                        <li><NavLink className='bg-transparent' to='/dasboard/reservation'> <FaCalendarAlt /> Reservation</NavLink></li>
                         <li><NavLink className='bg-transparent' to='/dasboard/paymentHistory'> <FaWallet /> Payment History</NavLink></li>
                         <li><NavLink className='bg-transparent' to='/dasboard/mycart'> <FaShoppingCart /> My Cart <span></span></NavLink> </li>
                         <li><NavLink className='bg-transparent' to='/dasboard/addReview'> <FaLeanpub />  Add Review</NavLink></li>

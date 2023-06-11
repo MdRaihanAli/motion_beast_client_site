@@ -77,7 +77,7 @@ function AllClass() {
                     {
                         allClasses.map((clas, index) => <tr key={index}>
                             <th >{index + 1}</th>
-                            <td> <img className='rounded w-100 h-100' src={clas.image} alt="" /></td>
+                            <td> <img className='rounded w-100 ' height='100' src={clas.image} alt="" /></td>
                             <td>{clas.title}</td>
                             <td>
                                 <span>{clas.name}</span> <br />

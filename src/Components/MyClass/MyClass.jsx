@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import { AuthContext } from '../../provider/Provider'
 import { Button, Modal, Table } from 'react-bootstrap'
 import useMyClass from '../../Hooks/useMyClass'
+import { toast } from 'react-toastify'
 
 function MyClass() {
     const { user } = useContext(AuthContext)
@@ -20,22 +21,23 @@ function MyClass() {
 
     const handelUpdate = (e) => {
         e.preventDefault()
-        const name = e.target.title.value
-        console.log(name);
+        const title = e.target.title.value
+        const price = e.target.price.value
+      
 
 
-        // fetch(`${import.meta.env.VITE_link}/classfeedback/${defaultId}`, {
-        //     method: 'PUT',
-        //     headers: { 'content-type': 'application/json' },
-        //     body: JSON.stringify({ feedback: textData })
-        // })
-        //     .then(res => res.json())
-        //     .then(data => {
-        //         console.log(data);
-        //         toast("Class sturus is Updated",)
-        //         refetch()
-        //         handleClose()
-        //     })
+        fetch(`${import.meta.env.VITE_link}/updateClass/${singleData._id}`, {
+            method: 'PATCH',
+            headers: { 'content-type': 'application/json' },
+            body: JSON.stringify({ title: title, price: price })
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                toast("Class sturus is Updated",)
+                refetch()
+                handleClose()
+            })
     }
 
 
@@ -65,7 +67,7 @@ function MyClass() {
                             <td>{clas.role}</td>
                             <td>{clas.feedback}</td>
                             <td>
-                                <button onClick={() => handleShow(clas)} className='btn btn-success btn-sm w-100'>Approve</button>
+                                <button onClick={() => handleShow(clas)} className='btn btn-success btn-sm w-100'>Update</button>
 
                             </td>
                         </tr>)
@@ -78,15 +80,19 @@ function MyClass() {
 
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
-                    <Modal.Title>Your Feedback</Modal.Title>
+                    <Modal.Title>Update Information</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <form onSubmit={handelUpdate}>
-                        <input className='form-control' placeholder='Writer Your Feedback' type="text" name='title' />
+                        <input className='form-control' defaultValue={singleData.title}   type="text" name='title' />
+                        <div className='d-flex gap-3 mt-4'>
+                            <input className='form-control w-50' defaultValue={singleData.price} type="number" name='price' />
+                            <Button type='submit'>
+                                Save Feedback
+                            </Button>
+                        </div>
 
-                        <Button type='submit'>
-                            Save Feedback
-                        </Button>
+
                     </form>
 
                 </Modal.Body>

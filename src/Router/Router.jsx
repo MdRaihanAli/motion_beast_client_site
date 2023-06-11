@@ -55,6 +55,9 @@ const router = createBrowserRouter([
             {
                 path: 'myClass',
                 element: <MyClass></MyClass>
+            },
+            {
+                path:'mySelectedClasses'
             }
         ]
     }
