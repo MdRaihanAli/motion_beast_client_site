@@ -4,20 +4,24 @@ import './Dashboard.css'
 import { FaBars, FaBook, FaCalendarAlt, FaCalendarCheck, FaHome, FaLeanpub, FaShoppingBag, FaShoppingCart, FaSms, FaUser, FaUtensils, FaWallet } from 'react-icons/fa';
 import logo from '../../assets/logo.png'
 import { AuthContext } from '../../provider/Provider';
+import Header from '../../Components/Header/Header';
+import Footer from '../../Components/Footer/Footer';
 
 function Dashboard() {
     const {user}= useContext(AuthContext)
     return (
-        <div className='container'>
+       <div>
+        <Header></Header>
+         <div className='container'>
             <div className="row">
 
                 <div className="col-md-3 bg-success-subtle min-vh-100">
                     <div className='position-fixed navbarr'>
-                        <div className='bg-light rounded align-items-center mt-5 px-2 d-flex ali '>
+                        {/* <div className='bg-light rounded align-items-center mt-5 px-2 d-flex ali '>
                             <img width='80' height='80' className='h-100' src={logo} alt="" />
                             <h3 className='text-dark fw-bold'>3D Motion</h3>
-                        </div>
-                        <div className=' rounded my-3 mb-4 text-center px-2 '>
+                        </div> */}
+                        <div className=' rounded my-3 mb-4  ms-5 text-center px-2 '>
                         <img title={user?.displayName} width='60' className='rounded-circle' height='60' src={user?.photoURL} alt="" />
                             <h5 className='text-dark fw-bold'>{user?.displayName}</h5>
                         </div>
@@ -49,6 +53,8 @@ function Dashboard() {
                 </div>
             </div>
         </div>
+        <Footer></Footer>
+       </div>
     )
 }
 

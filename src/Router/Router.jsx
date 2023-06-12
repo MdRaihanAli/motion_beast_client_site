@@ -11,8 +11,9 @@ import Addclass from "../Components/AddClass/Addclass.jsx";
 import MyClass from "../Components/MyClass/MyClass.jsx";
 import MySelectedClasses from "../Components/MySelectedClasses/MySelectedClasses.jsx";
 import MyEnrolledClasses from "../Components/MyEnrolledClasses/MyEnrolledClasses.jsx";
-import Instructors from "../Components/Home/Instructors.jsx";
+
 import ErrorPase from "../Components/ErrorPase/ErrorPase.jsx";
+import Instructors from "../Components/Instructors/Instructors.jsx";
 
 
 const router = createBrowserRouter([
