@@ -12,6 +12,7 @@ import MyClass from "../Components/MyClass/MyClass.jsx";
 import MySelectedClasses from "../Components/MySelectedClasses/MySelectedClasses.jsx";
 import MyEnrolledClasses from "../Components/MyEnrolledClasses/MyEnrolledClasses.jsx";
 import Instructors from "../Components/Home/Instructors.jsx";
+import ErrorPase from "../Components/ErrorPase/ErrorPase.jsx";
 
 
 const router = createBrowserRouter([
@@ -48,6 +49,9 @@ const router = createBrowserRouter([
         element: <Dashboard></Dashboard>,
         children: [
             {
+            
+            },
+            {
                 path: 'allClass',
                 element: <AllClass></AllClass>
             },
@@ -72,7 +76,12 @@ const router = createBrowserRouter([
                 element: <MyEnrolledClasses></MyEnrolledClasses>
             }
         ]
+    },
+    {
+        path: '*',
+        element: <ErrorPase></ErrorPase>
     }
+
 ]);
 
 export default router

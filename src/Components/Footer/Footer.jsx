@@ -5,43 +5,43 @@ import logo from '../../assets/logo.png'
 
 function Footer() {
     return (
-        <div className='bg-dark text-light'>
+        <div className='bg-dark text-light mt-5'>
             <div className='py-5'>
                 <div className="container">
                     <div className="row g-md-4">
                         <div className="col-md-6 col-lg-3" data-aos="fade-left">
                             <div><img width='120' src={logo} alt="" /></div>
-                            <hr />
-                            <div><Link className='nav-link'>About Us</Link></div>
-                            <div><Link className='nav-link'>Contact Us</Link></div>
-                            <div><Link className='nav-link'>Terms of Service</Link></div>
-                            <div><Link className='nav-link'>Refund policy</Link></div>
+                            
+                            <div><Link className='nav-link mt-3'>About Us</Link></div>
+                            <div><Link className='nav-link mt-1 '>Contact Us</Link></div>
+                            <div><Link className='nav-link mt-1'>Terms of Service</Link></div>
+                            <div><Link className='nav-link mt-1'>Refund policy</Link></div>
                         </div>
                         <div className="col-md-6 col-lg-3" data-aos="fade-right">
-                            <h3 className='text-bold'>Store Policies</h3>
+                            <h3 className='text-bold'>Coruse Policies</h3>
                             <hr />
-                            <div><Link className='nav-link'>Shipping & Returns Policy</Link></div>
-                            <div><Link className='nav-link'>Privacy Policy</Link></div>
-                            <div><Link className='nav-link'>Terms of Service</Link></div>
-                            <div><Link className='nav-link'>Refund policy</Link></div>
+                            <div><Link className='nav-link mt-1'>Shipping & Returns Policy</Link></div>
+                            <div><Link className='nav-link mt-1'>Privacy Policy</Link></div>
+                            <div><Link className='nav-link mt-1'>Terms of Service</Link></div>
+                            <div><Link className='nav-link mt-1'>Refund policy</Link></div>
                         </div>
                         <div className="col-md-6 col-lg-3" data-aos="fade-left">
                             <h3 className='text-bold'>Subscribe</h3>
                             <hr />
-                            <div><p className='nav-link'>Get Exclusive Deals & More!</p></div>
+                            <div><p className='nav-link mt-1'>Get Exclusive Deals & More!</p></div>
                             <div> <input className='form-control w-75' placeholder='Enter Email' type="text" /> </div>
-                            <div> <button className='btn btn-light mt-2'>Send Us</button> </div>
+                            <div> <button className='btn btn-light mt-2'>Subscribe </button> </div>
 
 
                         </div>
                         <div className="col-md-6 col-lg-3" data-aos="fade-right">
                             <h3 className='text-bold'>Follow us</h3>
                             <hr />
-                            <div className="midea">
-                                <Link className='facebook'><FaFacebookSquare /></Link>
-                                <Link className='messenger'><FaFacebookMessenger /></Link>
-                                <Link className='insta text-danger'><FaInstagramSquare /></Link>
-                                <Link className='youtube'><FaYoutubeSquare /></Link>
+                            <div className="midea display-6 text-light">
+                                <Link className='facebook me-2 text-light'><FaFacebookSquare /></Link>
+                                <Link className='messenger me-2'><FaFacebookMessenger /></Link>
+                                <Link className='insta text-danger me-2'><FaInstagramSquare /></Link>
+                                <Link className='youtube me-2'><FaYoutubeSquare /></Link>
                             </div>
                         </div>
                         
@@ -49,7 +49,7 @@ function Footer() {
                     </div>
                 </div>
             </div>
-            <p className='text-center'>Copyright © 2023 Toycra.</p>
+            <p className='text-center'>Copyright © 2023 3D Motion</p>
         </div>
     )
 }

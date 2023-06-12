@@ -32,8 +32,8 @@ function Header() {
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="mx-auto nav_bg">
                         <NavLink className='nav-link ' to='/'>Home</NavLink>
+                        <NavLink className='nav-link' to='/instructors'>Instructors</NavLink>
                         <NavLink className='nav-link' to='/classes'>Classes</NavLink>
-                        <NavLink className='nav-link' to='/instructors'>Classes</NavLink>
                         
 
                     </Nav>
