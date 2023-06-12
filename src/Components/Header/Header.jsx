@@ -33,7 +33,8 @@ function Header() {
                     <Nav className="mx-auto nav_bg">
                         <NavLink className='nav-link ' to='/'>Home</NavLink>
                         <NavLink className='nav-link' to='/classes'>Classes</NavLink>
-                        <Nav.Link href="#pricing">Pricing</Nav.Link>
+                        <NavLink className='nav-link' to='/instructors'>Classes</NavLink>
+                        
 
                     </Nav>
                     <Nav>

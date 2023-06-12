@@ -11,6 +11,7 @@ import Addclass from "../Components/AddClass/Addclass.jsx";
 import MyClass from "../Components/MyClass/MyClass.jsx";
 import MySelectedClasses from "../Components/MySelectedClasses/MySelectedClasses.jsx";
 import MyEnrolledClasses from "../Components/MyEnrolledClasses/MyEnrolledClasses.jsx";
+import Instructors from "../Components/Home/Instructors.jsx";
 
 
 const router = createBrowserRouter([
@@ -34,6 +35,10 @@ const router = createBrowserRouter([
                 path: 'classes',
                 element: <Classes></Classes>
             },
+            {
+                path: 'instructors',
+                element: <Instructors></Instructors>
+            }
 
         ]
 
