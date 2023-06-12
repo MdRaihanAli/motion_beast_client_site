@@ -35,11 +35,22 @@ li a{
 
 .card{
   box-shadow: 0 13px 10px rgb(0 0 0 / 0.8);
-  
+  overflow: hidden;
   transition: all 0.5s;
 }
 .skl:hover{
   transform: scale(1.1);
  
   box-shadow: 0 13px 10px rgb(0 0 0 / 0.8);
+}
+
+.popular-hover{
+  background-color: rgba(5, 5, 5, 0.699);
+  top: 0; 
+  left: 100%;
+  transition: all 0.5s;
+  position: absolute;
+}
+.popular-hover-main:hover .popular-hover{
+  left: 0;
 }

@@ -5,7 +5,6 @@ import useClasses from '../../Hooks/useClasses'
 
 function PopularClasses() {
     const [classd] = useClasses()
-    console.log(classd);
 
     return (
         <div>

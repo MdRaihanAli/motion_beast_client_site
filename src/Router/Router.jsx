@@ -9,15 +9,17 @@ import AllClass from "../Components/AllClass/AllClass.jsx";
 import ManageUser from "../Components/ManageUser/ManageUser.jsx";
 import Addclass from "../Components/AddClass/Addclass.jsx";
 import MyClass from "../Components/MyClass/MyClass.jsx";
+import MySelectedClasses from "../Components/MySelectedClasses/MySelectedClasses.jsx";
+import MyEnrolledClasses from "../Components/MyEnrolledClasses/MyEnrolledClasses.jsx";
 
 
 const router = createBrowserRouter([
     {
         path: "/",
-        element:<Main></Main>,
+        element: <Main></Main>,
         children: [
             {
-                path:'/',
+                path: '/',
                 element: <Home></Home>
             },
             {
@@ -29,23 +31,23 @@ const router = createBrowserRouter([
                 element: <SignUp></SignUp>
             },
             {
-                path:'classes',
+                path: 'classes',
                 element: <Classes></Classes>
             },
 
         ]
-    
+
     },
     {
-        path:'dashboard',
+        path: 'dashboard',
         element: <Dashboard></Dashboard>,
-        children:[
+        children: [
             {
-                path:'allClass',
+                path: 'allClass',
                 element: <AllClass></AllClass>
             },
             {
-                path:'manageUsers',
+                path: 'manageUsers',
                 element: <ManageUser></ManageUser>
             },
             {
@@ -57,7 +59,12 @@ const router = createBrowserRouter([
                 element: <MyClass></MyClass>
             },
             {
-                path:'mySelectedClasses'
+                path: 'mySelectedClasses',
+                element: <MySelectedClasses></MySelectedClasses>
+            },
+            {
+                path: 'myEnrolledClass',
+                element: <MyEnrolledClasses></MyEnrolledClasses>
             }
         ]
     }

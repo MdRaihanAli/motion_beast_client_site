@@ -5,38 +5,26 @@ import { AuthContext } from '../../provider/Provider'
 import { Button, Card } from 'react-bootstrap'
 import { toast } from 'react-toastify'
 
-function MySelectedClasses() {
+function MyEnrolledClasses() {
     const { user } = useContext(AuthContext)
     const [mySelectedClasses, refetch] = usemySelectedClass(user?.email)
-    const handelDelete = (id) => {
-        fetch(`${import.meta.env.VITE_link}/selectedItemDelete/${id}`, {
-            method: 'DELETE',
-        })
-            .then(res => res.json())
-            .then(data => {
-                console.log(data);
-                toast("Class is deleted",)
-                refetch()
+    console.log(mySelectedClasses);
 
-            })
-    }
+    const myEnrolClass = mySelectedClasses.filter(item=>item.select==='enrolled')
+    console.log(myEnrolClass);
 
-
-    const handelPay = (id) => {
-        console.log(id);
-        fetch(`${import.meta.env.VITE_link}/enrolledClass/${id}`, {
-            method: 'PATCH',
-            headers: { 'content-type': 'application/json' },
-            body: JSON.stringify({ select: "enrolled" })
-        })
-            .then(res => res.json())
-            .then(data => {
-                console.log(data);
-                toast("payment successfull",)
-                refetch()
+    // const handelDelete = (id) => {
+    //     fetch(`${import.meta.env.VITE_link}/selectedItemDelete/${id}`, {
+    //         method: 'DELETE',
+    //     })
+    //         .then(res => res.json())
+    //         .then(data => {
+    //             console.log(data);
+    //             toast("Class is deleted",)
+    //             refetch()
                 
-            })
-    }
+    //         })
+    // }
 
 
 
@@ -47,15 +35,14 @@ function MySelectedClasses() {
             <span className="visually-hidden align-self-center">Loading...</span>
         </div>
     }
-
-
-    return (
-        <div>
-            <h2 className='text-center fw-bold'> <span className="text-success">My</span> Selected</h2>
+    
+  return (
+    <div>
+            <h2 className='text-center fw-bold'> <span className="text-success">My</span> Enrollment Class</h2> 
             <div className='border-bottom w-25 mx-auto'></div>
             <div className="row mt-1 g-lg-5 g-md-3 g-2">
                 {
-                    mySelectedClasses.map(clas => <div key={clas._id} className='col-md-6   mb-3'>
+                    myEnrolClass.map(clas => <div key={clas._id} className='col-md-6   mb-3'>
                         <div style={{ border: 'none card_style' }} className='bg-light card skl text-center'>
                             <Card.Img variant="top" className='w-sm-100' style={{ maxHeight: "200px" }} src={clas.image} />
                             <Card.Body>
@@ -68,8 +55,8 @@ function MySelectedClasses() {
                                     <p>{clas.detail?.slice(0, 260)}</p>
                                 </Card.Text>
                                 <div className='d-flex justify-content-around'>
-                                    <Button onClick={()=>handelPay(clas._id)} variant="success shadow">Pay Now</Button>
-                                    <Button onClick={() => handelDelete(clas._id)} variant="secondary shadow-lg">Delete</Button>
+                                    <Button variant="success shadow">You Are Successfully Enrolled</Button>
+                                    
                                 </div>
                             </Card.Body>
                         </div>
@@ -81,7 +68,7 @@ function MySelectedClasses() {
 
 
         </div>
-    )
+  )
 }
 
-export default MySelectedClasses
+export default MyEnrolledClasses
