@@ -5,9 +5,9 @@ import { AuthContext } from '../provider/Provider'
 
 
 function PrivetRoute({ children }) {
-    const { user, loding } = useContext(AuthContext)
+    const { user, loading } = useContext(AuthContext)
     const location = useLocation()
-    if (loding) {
+    if (loading) {
         return <div style={{ width: "100vh" }} className="spinner-border d-flex align-self-center justify-content-center w-100" role="status">
             <span className="visually-hidden align-self-center">Loading...</span>
         </div>

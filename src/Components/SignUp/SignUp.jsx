@@ -14,6 +14,7 @@ function SignUp() {
     const [err, setErr] = useState('')
     const { createUser, updateUserProfile } = useContext(AuthContext)
     const navigate = useNavigate()
+    const from = location.state?.from?.pathname || '/'
 
 
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
@@ -45,8 +46,7 @@ function SignUp() {
                           .then(result=>result.json())
                           .then(data=>console.log(data))
 
-                        navigate('/')
-                        console.log(result);
+                          navigate(from, { replace: true })
                     })
                     
                     .catch(err => {

@@ -11,8 +11,9 @@ function Login() {
     const [show, setShow] = useState(false)
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
     const onSubmit = data => console.log(data);
-
     const navigate = useNavigate()
+
+    const from = location.state?.from?.pathname || '/'
 
     const { signInWithGoogle } = useContext(AuthContext)
 
@@ -27,7 +28,7 @@ function Login() {
                       })
                       .then(result=>result.json())
                       .then(data=>console.log(data))
-                navigate('/')
+                navigate(from, { replace: true })
 
             })
             .catch(err => {
