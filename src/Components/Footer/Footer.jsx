@@ -10,8 +10,9 @@ function Footer() {
                 <div className="container">
                     <div className="row g-md-4">
                         <div className="col-md-6 col-lg-3" data-aos="fade-left">
-                            <div><img width='120' src={logo} alt="" /></div>
-                            
+
+                            <h3 className='text-bold'>About Policies</h3>
+                            <hr />
                             <div><Link className='nav-link mt-3'>About Us</Link></div>
                             <div><Link className='nav-link mt-1 '>Contact Us</Link></div>
                             <div><Link className='nav-link mt-1'>Terms of Service</Link></div>
@@ -44,12 +45,18 @@ function Footer() {
                                 <Link className='youtube me-2'><FaYoutubeSquare /></Link>
                             </div>
                         </div>
-                        
+
 
                     </div>
+
                 </div>
             </div>
-            <p className='text-center'>Copyright © 2023 3D Motion</p>
+            <hr />
+                <div className='container d-flex justify-content-between'>
+                    <img width='120' src={logo} alt="" />
+                    <p className='text-center mt-auto'>Copyright © 2023 3D Motion</p>
+                </div>
+
         </div>
     )
 }

@@ -54,3 +54,8 @@ li a{
 .popular-hover-main:hover .popular-hover{
   left: 0;
 }
+
+.exta-section-bg{
+  background-color: aqua;
+  border-top-left-radius: 50%;
+}
