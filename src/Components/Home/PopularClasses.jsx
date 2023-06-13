@@ -1,10 +1,30 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import useClasses from '../../Hooks/useClasses'
+import { toast } from 'react-toastify';
+import { AuthContext } from '../../provider/Provider';
 
 function PopularClasses() {
     const [classd] = useClasses()
+    const { user } = useContext(AuthContext)
+
+
+
+    const handelSelect = (item) => {
+        item.select = 'select'
+        item.student_email = user.email
+
+        fetch(`${import.meta.env.VITE_link}/selectClass`, {
+            method: 'POST',
+            headers: { 'content-type': 'application/json' },
+            body: JSON.stringify(item)
+        })
+            .then(res => res.json())
+            .then(data => {
+                toast("this class is selected",)
+            })
+    }
 
     return (
         <div className='bg-light pb-3'>
@@ -25,7 +45,7 @@ function PopularClasses() {
                                 <Card.Text>
                                   {clas.detail}
                                 </Card.Text>
-                                <Button variant="success shadow">Enroll Now</Button>
+                                <Button onClick={() => handelSelect(clas)} variant="success shadow">Select Now</Button>
                             </Card.Body>
                         </div>
                         </div>
