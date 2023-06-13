@@ -32,6 +32,11 @@ function MySelectedClasses() {
     }
 
 
+    const enroledUpdate =(id)=>{
+        console.log(id);
+    }
+
+
     const handelPay = (id) => {
         console.log(id);
         fetch(`${import.meta.env.VITE_link}/enrolledClass/${id}`, {
@@ -42,7 +47,8 @@ function MySelectedClasses() {
             .then(res => res.json())
             .then(data => {
                 console.log(data);
-                toast("payment successfull",)
+                enroledUpdate(id)
+                toast(" Enroled  successfull",)
                 refetch()
 
             })

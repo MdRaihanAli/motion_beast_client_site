@@ -4,14 +4,20 @@ import Card from 'react-bootstrap/Card';
 import useClasses from '../../Hooks/useClasses'
 import { toast } from 'react-toastify';
 import { AuthContext } from '../../provider/Provider';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 function PopularClasses() {
     const [classd] = useClasses()
     const { user } = useContext(AuthContext)
+    const navigator = useNavigate()
 
 
 
     const handelSelect = (item) => {
+        if (!user) {
+         return  toast('you have to login for select')
+        }
+
         item.select = 'select'
         item.student_email = user.email
 

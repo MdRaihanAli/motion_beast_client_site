@@ -3,7 +3,7 @@ import { useQuery } from "@tanstack/react-query"
 
 const useUsers = () => {
     const { data: users = [], refetch } = useQuery({
-        queryKey: ['users'],
+        queryKey: ['user'],
         queryFn: async () => {
             const response = await fetch(`${import.meta.env.VITE_link}/users`)
             return response.json()

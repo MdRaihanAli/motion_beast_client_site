@@ -8,26 +8,35 @@ import { FaEyeSlash, FaEye } from "react-icons/fa";
 
 
 function Login() {
+    const { signInWithGoogle, signIn } = useContext(AuthContext)
     const [show, setShow] = useState(false)
-    const { register, handleSubmit, watch, formState: { errors } } = useForm();
-    const onSubmit = data => console.log(data);
     const navigate = useNavigate()
 
     const from = location.state?.from?.pathname || '/'
 
-    const { signInWithGoogle } = useContext(AuthContext)
+    const { register, handleSubmit,  formState: { errors } } = useForm();
+    const onSubmit = data => {
+        signIn(data.email, data.password)
+            .then(res => {
+                navigate(from, { replace: true })
+                console.log(res)
+            })
+            .catch(err => console.log(err))
+    };
+   
+
 
     const handelGoogleLogin = () => {
         signInWithGoogle()
             .then(res => {
                 // console.log(res);
-                fetch(`${import.meta.env.VITE_link}/user`,{
-                        method: 'POST',
-                        headers: { 'content-type': 'application/json' },
-                        body: JSON.stringify({ name: res.user.displayName, email: res.user.email, image: res.user.photoURL, role: "student" })
-                      })
-                      .then(result=>result.json())
-                      .then(data=>console.log(data))
+                fetch(`${import.meta.env.VITE_link}/user`, {
+                    method: 'POST',
+                    headers: { 'content-type': 'application/json' },
+                    body: JSON.stringify({ name: res.user.displayName, email: res.user.email, image: res.user.photoURL, role: "student" })
+                })
+                    .then(result => result.json())
+                    .then(data => console.log(data))
                 navigate(from, { replace: true })
 
             })
