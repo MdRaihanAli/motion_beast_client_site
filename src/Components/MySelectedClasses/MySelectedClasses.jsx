@@ -5,6 +5,16 @@ import { AuthContext } from '../../provider/Provider'
 import { Button, Card } from 'react-bootstrap'
 import { toast } from 'react-toastify'
 
+
+// for modal 
+import { useState } from 'react';
+import Modal from 'react-bootstrap/Modal';
+import { Elements } from '@stripe/react-stripe-js'
+import { loadStripe } from '@stripe/stripe-js'
+import CheckoutForm from '../CheckOutFrom.jsx/CheckOutFrom'
+const stripePromise = loadStripe(`pk_test_51NIQIfBbGexizKFDZ0V7AJy2IgMsQMxObZ5nCi0sJxZArnHi9BzTKPUzd6qSIliyeotmHg6Vb52QEfHMfe1z2rtw00GbpCwYQG`);
+
+
 function MySelectedClasses() {
     const { user } = useContext(AuthContext)
     const [mySelectedClasses, refetch] = usemySelectedClass(user?.email)
@@ -34,9 +44,23 @@ function MySelectedClasses() {
                 console.log(data);
                 toast("payment successfull",)
                 refetch()
-                
+
             })
     }
+
+    // onClick={() => handelPay(clas._id)} 
+
+
+    // for modal 
+    const [deData, setData] = useState({})
+    const [show, setShow] = useState(false);
+
+    const handleClose = () => setShow(false);
+
+    const handleShow = (data) => {
+        setShow(true)
+        setData(data)
+    };
 
 
 
@@ -68,7 +92,7 @@ function MySelectedClasses() {
                                     <p>{clas.detail?.slice(0, 260)}</p>
                                 </Card.Text>
                                 <div className='d-flex justify-content-around'>
-                                    <Button onClick={()=>handelPay(clas._id)} variant="success shadow">Pay Now</Button>
+                                    <Button onClick={() => handleShow(clas)} variant="success shadow">Pay Now</Button>
                                     <Button onClick={() => handelDelete(clas._id)} variant="secondary shadow-lg">Delete</Button>
                                 </div>
                             </Card.Body>
@@ -77,6 +101,33 @@ function MySelectedClasses() {
                     )
                 }
             </div>
+
+
+            <Modal show={show} onHide={handleClose}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Modal heading</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+
+
+                    <Elements stripe={stripePromise} >
+                        <CheckoutForm handleClose={handleClose} handelPay={handelPay} bookingInfo={deData} />
+                    </Elements>
+
+
+
+
+
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button variant="secondary" onClick={handleClose}>
+                        Close
+                    </Button>
+                    <Button variant="primary" onClick={handleClose}>
+                        Save Changes
+                    </Button>
+                </Modal.Footer>
+            </Modal>
 
 
 

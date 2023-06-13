@@ -1,14 +1,18 @@
 import React, { useContext } from 'react'
 import { Link, NavLink, Outlet } from 'react-router-dom'
 import './Dashboard.css'
-import { FaBars, FaBook, FaCalendarAlt, FaCalendarCheck, FaHome, FaLeanpub, FaShoppingBag, FaShoppingCart, FaSms, FaUser, FaUtensils, FaWallet } from 'react-icons/fa';
-import logo from '../../assets/logo.png'
+import { FaBars, FaBook, FaCalendarAlt, FaCalendarCheck, FaHome, FaLeanpub,  FaShoppingCart,  FaUser, FaUtensils, FaWallet } from 'react-icons/fa';
 import { AuthContext } from '../../provider/Provider';
 import Header from '../../Components/Header/Header';
 import Footer from '../../Components/Footer/Footer';
+import { Badge } from 'react-bootstrap';
+import usemySelectedClass from '../../Hooks/useMyselectedClass';
 
 function Dashboard() {
     const {user}= useContext(AuthContext)
+    const [mySelectedClasses, refetch] = usemySelectedClass(user?.email)
+
+    const myEnrolClass = mySelectedClasses.filter(item=>item.select==='enrolled')
     return (
        <div>
         <Header></Header>
@@ -33,8 +37,8 @@ function Dashboard() {
 
                         <li><NavLink className='bg-transparent' to='addClass'> <FaBook /> Add a Class </NavLink> </li>
                         <li><NavLink className='bg-transparent' to='myClass'> <FaCalendarCheck />  My Class</NavLink></li>
-                        <li><NavLink className='bg-transparent' to='mySelectedClasses'> <FaCalendarAlt /> My Selected Classes</NavLink></li>
-                        <li><NavLink className='bg-transparent' to='myEnrolledClass'> <FaLeanpub /> My Enrolled Classes</NavLink></li>
+                        <li><NavLink className='bg-transparent' to='mySelectedClasses'> <FaCalendarAlt /> My Selected Classes <Badge bg="secondary">{mySelectedClasses.length}</Badge></NavLink></li>
+                        <li><NavLink className='bg-transparent' to='myEnrolledClass'> <FaLeanpub /> My Enrolled Classes <Badge bg="secondary">{myEnrolClass.length}</Badge></NavLink></li>
 
                         <li><NavLink className='bg-transparent' to='/dasboard/reservation'> <FaUtensils /> Add Item</NavLink></li>
 
