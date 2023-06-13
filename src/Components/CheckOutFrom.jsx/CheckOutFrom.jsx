@@ -83,7 +83,7 @@ const CheckoutForm = ({ handleClose, bookingInfo, handelPay }) => {
 
         if (paymentIntent.status === 'succeeded') {
             toast('Peament Successfull')
-            handelPay(bookingInfo._id)
+            handelPay(bookingInfo)
             navigate('/dashboard/myEnrolledClass')
             setCardError('')
         }

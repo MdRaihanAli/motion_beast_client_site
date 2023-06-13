@@ -8,24 +8,10 @@ import { toast } from 'react-toastify'
 function MyEnrolledClasses() {
     const { user } = useContext(AuthContext)
     const [mySelectedClasses, refetch] = usemySelectedClass(user?.email)
-    console.log(mySelectedClasses);
+    // console.log(mySelectedClasses);
 
     const myEnrolClass = mySelectedClasses.filter(item=>item.select==='enrolled')
-    console.log(myEnrolClass);
-
-    // const handelDelete = (id) => {
-    //     fetch(`${import.meta.env.VITE_link}/selectedItemDelete/${id}`, {
-    //         method: 'DELETE',
-    //     })
-    //         .then(res => res.json())
-    //         .then(data => {
-    //             console.log(data);
-    //             toast("Class is deleted",)
-    //             refetch()
-                
-    //         })
-    // }
-
+    // console.log(myEnrolClass);
 
 
 
@@ -38,7 +24,7 @@ function MyEnrolledClasses() {
     
   return (
     <div>
-            <h2 className='text-center fw-bold'> <span className="text-success">My</span> Enrollment Class</h2> 
+            <h2 className='text-center fw-bold mt-4'> <span className="text-success">My</span> Enrollment Class</h2> 
             <div className='border-bottom w-25 mx-auto'></div>
             <div className="row mt-1 g-lg-5 g-md-3 g-2">
                 {
@@ -48,8 +34,8 @@ function MyEnrolledClasses() {
                             <Card.Body>
                                 <Card.Title>{clas.title}</Card.Title>
                                 <div className='d-flex justify-content-between '>
-                                    <h6 className='shadow-sm p-2 text-success'>Enrolled: {clas.enarolled}</h6>
-                                    <h6 className='shadow-sm p-2 text-success'>Available seats: {clas.range - clas.enarolled}</h6>
+                                    <h6 className='shadow-sm p-2 text-success'>Class start: 2023/06/ {parseInt(Math.random()*30)}</h6>
+                                    <h6 className='shadow-sm p-2 text-success'>Capacity: {clas.range - clas.enarolled}</h6>
                                 </div>
                                 <Card.Text>
                                     <p>{clas.detail?.slice(0, 260)}</p>

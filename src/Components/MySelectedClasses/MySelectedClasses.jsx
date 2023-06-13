@@ -1,5 +1,4 @@
 import React, { useContext } from 'react'
-import useMyClass from '../../Hooks/useMyClass'
 import usemySelectedClass from '../../Hooks/useMyselectedClass'
 import { AuthContext } from '../../provider/Provider'
 import { Button, Card } from 'react-bootstrap'
@@ -12,11 +11,13 @@ import Modal from 'react-bootstrap/Modal';
 import { Elements } from '@stripe/react-stripe-js'
 import { loadStripe } from '@stripe/stripe-js'
 import CheckoutForm from '../CheckOutFrom.jsx/CheckOutFrom'
+import useClasses from '../../Hooks/useClasses'
 const stripePromise = loadStripe(`pk_test_51NIQIfBbGexizKFDZ0V7AJy2IgMsQMxObZ5nCi0sJxZArnHi9BzTKPUzd6qSIliyeotmHg6Vb52QEfHMfe1z2rtw00GbpCwYQG`);
 
 
 function MySelectedClasses() {
     const { user } = useContext(AuthContext)
+    const [allClass] = useClasses()
     const [mySelectedClasses, refetch] = usemySelectedClass(user?.email)
     const handelDelete = (id) => {
         fetch(`${import.meta.env.VITE_link}/selectedItemDelete/${id}`, {
@@ -33,13 +34,24 @@ function MySelectedClasses() {
 
 
     const enroledUpdate =(id)=>{
-        console.log(id);
+        const singleData = allClass.find(x=>x._id == id )
+        const newprice = singleData.enarolled + 1 ;
+        // console.log(singleData);
+        // console.log(id);
+
+        fetch(`${import.meta.env.VITE_link}/enroledUpdate/${id}`,{
+            method: 'PATCH',
+            headers: { 'content-type': 'application/json' },
+            body: JSON.stringify({ enarolled: newprice })
+        })
+        .then(res=>res.json())
+        .then(data=>{console.log(data);})
     }
 
 
-    const handelPay = (id) => {
-        console.log(id);
-        fetch(`${import.meta.env.VITE_link}/enrolledClass/${id}`, {
+    const handelPay = (bookingInfo) => {
+        
+        fetch(`${import.meta.env.VITE_link}/enrolledClass/${bookingInfo._id}`, {
             method: 'PATCH',
             headers: { 'content-type': 'application/json' },
             body: JSON.stringify({ select: "enrolled" })
@@ -47,7 +59,7 @@ function MySelectedClasses() {
             .then(res => res.json())
             .then(data => {
                 console.log(data);
-                enroledUpdate(id)
+                enroledUpdate(bookingInfo.class_id)
                 toast(" Enroled  successfull",)
                 refetch()
 
@@ -81,7 +93,7 @@ function MySelectedClasses() {
 
     return (
         <div>
-            <h2 className='text-center fw-bold'> <span className="text-success">My</span> Selected</h2>
+            <h2 className='text-center fw-bold mt-4'> <span className="text-success">My</span> Selected</h2>
             <div className='border-bottom w-25 mx-auto'></div>
             <div className="row mt-1 g-lg-5 g-md-3 g-2">
                 {
@@ -91,8 +103,8 @@ function MySelectedClasses() {
                             <Card.Body>
                                 <Card.Title>{clas.title}</Card.Title>
                                 <div className='d-flex justify-content-between '>
-                                    <h6 className='shadow-sm p-2 text-success'>Enrolled: {clas.enarolled}</h6>
-                                    <h6 className='shadow-sm p-2 text-success'>Available seats: {clas.range - clas.enarolled}</h6>
+                                    <h6 className='shadow-sm p-2 text-success'>Class start: 2023/06/ {parseInt(Math.random()*30)}</h6>
+                                    <h6 className='shadow-sm p-2 text-success'>Capacity: {clas.range - clas.enarolled}</h6>
                                 </div>
                                 <Card.Text>
                                     <p>{clas.detail?.slice(0, 260)}</p>
