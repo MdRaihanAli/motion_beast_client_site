@@ -15,6 +15,7 @@ import MyEnrolledClasses from "../Components/MyEnrolledClasses/MyEnrolledClasses
 import ErrorPase from "../Components/ErrorPase/ErrorPase.jsx";
 import Instructors from "../Components/Instructors/Instructors.jsx";
 import PrivetRoute from "../privetRoute/PrivetRoute.jsx";
+import Wellcome from "../Components/wellcome/Wellcome.jsx";
 
 
 const router = createBrowserRouter([
@@ -51,7 +52,8 @@ const router = createBrowserRouter([
         element: <PrivetRoute><Dashboard></Dashboard></PrivetRoute>,
         children: [
             {
-
+                path: "",
+                element: <Wellcome></Wellcome>
             },
             {
                 path: 'allClass',
