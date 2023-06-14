@@ -4,7 +4,7 @@ import { Card } from 'react-bootstrap';
 
 function PopularInstructors() {
   const [users] = useUsers()
-  const instructors = users.filter(user=>user.role=='insrtuctor')
+  const instructors = users?.filter(user=>user?.role=='insrtuctor')
 
   return (
     <div className='container mt-md-5 pt-md-2'>

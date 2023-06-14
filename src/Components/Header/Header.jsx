@@ -40,12 +40,11 @@ function Header() {
                     <Nav>
                         {
                             user ? <span className='d-flex'>
-                                <NavLink className='nav-link' to='/dashboard'>Dashboard</NavLink>
+                                <NavLink className='nav-link me-4' to='/dashboard'>Dashboard</NavLink>
                                 <img title={user?.displayName} width='40' className='rounded-circle' height='40' src={user?.photoURL} alt="" />
                                 <button onClick={handelSignOut} className='btn btn-success ms-2'>Sign Out</button>
                             </span> : <NavLink className='ms-2' to='/login'> <button className='btn btn-success'>Login</button></NavLink>
                         }
-
 
                     </Nav>
                 </Navbar.Collapse>

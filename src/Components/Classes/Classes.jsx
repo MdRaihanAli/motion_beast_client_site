@@ -61,20 +61,22 @@ function Classes() {
                         <th scope="col">Name</th>
                         <th scope="col">Instructor</th>
                         <th scope="col">Available seats</th>
+                        <th scope="col">Total seats</th>
                         <th scope="col">Price</th>
                         <th scope="col">Acction</th>
                     </tr>
                 </thead>
                 <tbody>
                     {
-                        approvedClass.map((clas, index) => <tr key={index} className=''>
+                        approvedClass.map((clas, index) => <tr key={index} style={{backgroundColor:"red"}}>
                             <th >{index + 1}</th>
                             <td> <img className='w-100 rounded ' height='40' src={clas.image} alt="" /></td>
                             <td>{clas.title}</td>
                             <td>{clas.name}</td>
                             <td>{clas.range - clas.enarolled}</td>
+                            <td>{clas.range }</td>
                             <td>{clas.price}</td>
-                            <td> <button disabled={defaintUser?.role== 'admin' || defaintUser?.role== 'insrtuctor' } onClick={() => handelSelect(clas)} className='btn btn-success'>Select</button></td>
+                            <td > <button disabled={defaintUser?.role== 'admin' || defaintUser?.role== 'insrtuctor' || !user } onClick={() => handelSelect(clas)} className='btn btn-success'>Select</button></td>
                         </tr>)
                     }
 

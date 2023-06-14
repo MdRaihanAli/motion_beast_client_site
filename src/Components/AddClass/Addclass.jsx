@@ -1,6 +1,7 @@
 import React, { useContext } from 'react'
 import { useForm } from 'react-hook-form';
 import { AuthContext } from '../../provider/Provider';
+import { toast } from 'react-toastify';
 
 
 function Addclass() {
@@ -49,7 +50,8 @@ function Addclass() {
                     })
                         .then(result => result.json())
                         .then(data => {
-
+                            toast('class succsfully add')
+                                console.log(data);
                         
                         })
                 }

@@ -15,7 +15,6 @@ function Dashboard() {
     const [userInfo] = useUsers()
 
     const defaintUser = userInfo.find(x => x.email == user.email)
-    console.log(defaintUser?.role);
     // console.log(userInfo);
 
     const myEnrolClass = mySelectedClasses.filter(item => item.select === 'enrolled')
@@ -34,18 +33,18 @@ function Dashboard() {
                             </div>
 
 
-                            <li><NavLink className='bg-transparent' to='/'> <FaHome />Home</NavLink></li>
+                            <li><NavLink className='bg-transparent' to='/'> <FaHome /> &nbsp; Home</NavLink></li>
 
                             {
                                 defaintUser?.role == 'admin' ? <>
-                                    <li><NavLink className='bg-transparent df' to='allClass'> <FaBars /> Manage Classes</NavLink></li>
-                                    <li><NavLink className='bg-transparent' to='manageUsers'> <FaUser />  Manage User</NavLink></li>
+                                    <li><NavLink className='bg-transparent df' to='allClass'> <FaBars /> &nbsp; Manage Classes</NavLink></li>
+                                    <li><NavLink className='bg-transparent' to='manageUsers'> <FaUser />&nbsp;  Manage User</NavLink></li>
                                 </> : defaintUser?.role == 'insrtuctor' ? <>
-                                    <li><NavLink className='bg-transparent' to='addClass'> <FaBook /> Add a Class </NavLink> </li>
-                                    <li><NavLink className='bg-transparent' to='myClass'> <FaCalendarCheck />  My Class</NavLink></li>
+                                    <li><NavLink className='bg-transparent' to='addClass'> <FaBook />&nbsp; Add a Class  </NavLink> </li>
+                                    <li><NavLink className='bg-transparent' to='myClass'> <FaCalendarCheck />  &nbsp; My Class</NavLink></li>
                                 </> : <>
-                                    <li><NavLink className='bg-transparent' to='mySelectedClasses'> <FaCalendarAlt /> My Selected Classes <Badge bg="secondary">{mySelectedClasses.length}</Badge></NavLink></li>
-                                    <li><NavLink className='bg-transparent' to='myEnrolledClass'> <FaLeanpub /> My Enrolled Classes <Badge bg="secondary">{myEnrolClass.length}</Badge></NavLink></li>
+                                    <li><NavLink className='bg-transparent' to='mySelectedClasses'> <FaCalendarAlt />&nbsp; My Selected Classes <Badge bg="secondary">{mySelectedClasses.length}</Badge></NavLink></li>
+                                    <li><NavLink className='bg-transparent' to='myEnrolledClass'> <FaLeanpub />&nbsp; My Enrolled Classes <Badge bg="secondary">{myEnrolClass.length}</Badge></NavLink></li>
                                 </>
                             }
                             {/* // <li><NavLink className='bg-transparent df' to='allClass'> <FaBars /> Manage Classes</NavLink></li>

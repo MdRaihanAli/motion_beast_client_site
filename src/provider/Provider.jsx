@@ -11,9 +11,9 @@ import {
   updateProfile,
 } from 'firebase/auth'
 import app from '../firebase/firebase.config'
+import axios from 'axios'
 
-// import { getRole } from '../api/auth'
-// import axios from 'axios'
+
 
 export const AuthContext = createContext(null)
 
@@ -25,11 +25,6 @@ const AuthProvider = ({ children }) => {
   const [role, setRole] = useState(null)
   const [loading, setLoading] = useState(true)
 
-//   useEffect(() => {
-//     if (user) {
-//       getRole(user.email).then(data => setRole(data))
-//     }
-//   }, [user])
 
   const createUser = (email, password) => {
     setLoading(true)
@@ -46,10 +41,6 @@ const AuthProvider = ({ children }) => {
     return signInWithPopup(auth, googleProvider)
   }
 
-//   const resetPassword = email => {
-//     setLoading(true)
-//     return sendPasswordResetEmail(auth, email)
-//   }
 
   const logOut = () => {
     setLoading(true)
@@ -68,20 +59,23 @@ const AuthProvider = ({ children }) => {
     const unsubscribe = onAuthStateChanged(auth, currentUser => {
       setUser(currentUser)
       console.log('current user', currentUser)
-      // get and set token
-    //   if (currentUser) {
-    //     axios
-    //       .post(`${import.meta.env.VITE_API_URL}/jwt`, {
-    //         email: currentUser.email,
-    //       })
-    //       .then(data => {
-    //         // console.log(data.data.token)
-    //         localStorage.setItem('access-token', data.data.token)
-    //         setLoading(false)
-    //       })
-    //   } else {
-    //     localStorage.removeItem('access-token')
-    //   }
+    
+      if (currentUser) {
+
+        fetch(`${import.meta.env.VITE_link}/jwt`,{
+          method: 'POST',
+          headers: { 'content-type': 'application/json' },
+            body: JSON.stringify({ email: currentUser.email })
+        }).then(res=>res.json())
+        .then(data =>{
+          console.log(data);
+          localStorage.setItem('access-token', data.token)
+            setLoading(false)
+        })
+       
+      } else {
+        localStorage.removeItem('access-token')
+      }
       setLoading(false)
     })
     return () => {

@@ -1,12 +1,19 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import useUsers from '../../Hooks/useUsers';
 import Table from 'react-bootstrap/Table';
 import { toast } from 'react-toastify';
+import { AuthContext } from '../../provider/Provider';
+import usemySelectedClass from '../../Hooks/useMyselectedClass';
 
 
 
 function ManageUser() {
     const [users, refetch] = useUsers()
+    const { user } = useContext(AuthContext)
+    const [mySelectedClasses, ] = usemySelectedClass(user?.email)
+    // const [userInfo] = useUsers()
+
+    const defaintUser = users.find(x => x.email == user.email)
     
     const handelAprove = (id, text) => {
         fetch(`${import.meta.env.VITE_link}/user/${id}`, {
@@ -20,6 +27,13 @@ function ManageUser() {
                 toast("User sturus is Updated",)
                 refetch()
             })
+    }
+
+    if (defaintUser?.role=='insrtuctor') {
+        return
+    }
+    if (defaintUser?.role=='student') {
+        return
     }
 
     return (

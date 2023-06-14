@@ -5,33 +5,58 @@ import useClasses from '../../Hooks/useClasses'
 import { toast } from 'react-toastify';
 import { AuthContext } from '../../provider/Provider';
 import { Navigate, useNavigate } from 'react-router-dom';
+import useUsers from '../../Hooks/useUsers';
 
 function PopularClasses() {
     const [classd] = useClasses()
     const { user } = useContext(AuthContext)
     const navigator = useNavigate()
 
+    const [allClass] = useClasses()
+    const approvedClass = classd.filter(x=>x.role=='approved')
+    
 
+    const [userInfo] = useUsers()
+
+    const defaintUser = userInfo.find(x => x.email == user?.email)
+
+
+
+   
 
     const handelSelect = (item) => {
-        if (!user) {
-         return  toast('you have to login for select')
+        item.select = 'select'
+        item.student_email = user?.email
+
+        const selectdeClas = {
+            class_id: item._id,
+            title: item.title,
+            name: user.displayName,
+            email: user.email,
+            image: item.image,
+            price: item.price,
+            range: item.range,
+            p_photo: user.photoURL,
+            enarolled: 0,
+            detail: item.detail,
+            select: "select",
+            role: "pending",
+            feedback: ""
         }
 
-        item.select = 'select'
-        item.student_email = user.email
+
+        
 
         fetch(`${import.meta.env.VITE_link}/selectClass`, {
             method: 'POST',
             headers: { 'content-type': 'application/json' },
-            body: JSON.stringify(item)
+            body: JSON.stringify(selectdeClas)
         })
             .then(res => res.json())
             .then(data => {
                 toast("this class is selected",)
             })
     }
-
     return (
         <div className='bg-light pb-3'>
             <div className='container'>
@@ -51,7 +76,9 @@ function PopularClasses() {
                                 <Card.Text>
                                   {clas.detail}
                                 </Card.Text>
-                                <Button onClick={() => handelSelect(clas)} variant="success shadow">Select Now</Button>
+                                {/* <Button onClick={() => handelSelect(clas)} variant="success shadow">Select Now</Button> */}
+
+                                 <button disabled={defaintUser?.role== 'admin' || defaintUser?.role== 'insrtuctor' || !user} onClick={() => handelSelect(clas)} className='btn btn-success'>Select Now</button>
                             </Card.Body>
                         </div>
                         </div>
